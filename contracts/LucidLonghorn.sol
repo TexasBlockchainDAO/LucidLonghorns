@@ -8,7 +8,7 @@ pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract BevoPunk is Ownable, ERC721 {
+contract LucidLonghorn is Ownable, ERC721 {
 
 	constructor()
 	ERC721("LucidLonghorn", "LUCL")

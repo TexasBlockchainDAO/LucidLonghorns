@@ -1,0 +1,27 @@
+#base {
+  color: AliceBlue;
+}
+#bronze {
+  color: DarkGoldenRod;
+}
+#silver {
+  color: Gainsboro;
+}
+#gold {
+  color: Gold;
+}
+#other {
+  color: white;
+}
+.center {
+  text-align: center;
+}
+.bottom {
+  text-indent: 275px;
+}
+.buttons {
+  text-indent: 225px;
+}
+h1 {
+  text-align: center;
+}

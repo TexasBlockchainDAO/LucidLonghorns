@@ -12,7 +12,6 @@ describe("Lucid Longhorn", function () {
     userAddress = user.address;
     user2Address = user2.address;
     ownerAddress = owner.address;
-    contractAddress = 
     await this.lucid.connect(owner).whitelist([userAddress, user2Address], ['2111', '3311']);
   });
 describe("Mint and allocate", function() {

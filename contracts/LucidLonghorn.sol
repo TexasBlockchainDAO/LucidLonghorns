@@ -28,7 +28,12 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 	function internalTransfer(address recipient, uint256 tokenId) private {
 		_transfer(address(this), recipient, tokenId);
 	}
-
+	
+	/** 
+	* Members, alumni, and sponsors can mint their own exclusive Lucid Longhorn by getting on the UT Blockchain whitelist
+	* Whitelisting occurs randomly, and only people who consistently participate in the club are whitelisted
+	* Once whitelisted, you will be able to claim your Lucid Longhorn from https://www.texasblockchain.org/
+	**/
 	function whitelist(address[] calldata accounts, uint256[] calldata tokenIds) public onlyOwner {
 		for (uint32 i = 0; i < accounts.length; i++) {
 			mint(address(this), tokenIds[i]);

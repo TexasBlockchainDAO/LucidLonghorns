@@ -17,6 +17,12 @@ contract Init {
 
 	uint256 internal goldIndex;
 
+	/**
+	* Base is the cheapest, and the most common purchasable NFT -- 1000 total
+	* Bronze is more expensive and more rare -- 500 total
+	* Silver is reserved for big donators -- 300 total
+	* Gold is the highest and rarest tier -- 200 total
+	**/
 	constructor() {
 		baseIndex = 0;
 		bronzeIndex = 1000;

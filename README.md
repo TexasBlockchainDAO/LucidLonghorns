@@ -1,5 +1,5 @@
 # LucidLonghorns
-NFT smart contract fot Texas Blockchain @UT
+NFT smart contract for Texas Blockchain @UT
 
 To test this code for yourself, first clone the repo with
 

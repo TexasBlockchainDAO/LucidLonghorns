@@ -91,5 +91,13 @@ describe("Miscellaneous", function () {
   it("does not allow other users to claim a non-existant NFT", async function () {
     await expect(this.lucid.connect(user).claim('32')).to.be.revertedWith('ERC721: operator query for nonexistent token');
   });
+  it('properly withdraws ETH from the contract', async function () {
+    await this.lucid.connect(owner).withdraw();
+    expect(await this.lucid.connect(owner).contractBalance()).to.eq('0');
+  });
+  it('returns excess ETH when a user deposits more than required', async function () {
+    await this.lucid.connect(user).buyGold({value: ethers.utils.parseEther("2.0")});
+    expect(await this.lucid.contractBalance()).to.eq('1000000000000000000');
+  });
 });
 });

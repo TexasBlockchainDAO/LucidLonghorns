@@ -4,6 +4,7 @@ SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./libraries/LibConstants.sol";
@@ -11,8 +12,10 @@ import "./Init.sol";
 
 contract LucidLonghorn is ERC721, Ownable, Init {
 
+	using SafeMath for uint256;
+
 	constructor()
-	ERC721("LucidLonghorn", "LUCL")
+	ERC721("LucidLonghorns", "LUCL")
 	{}
 
 	function mint(address account, uint256 tokenId) private returns (bool) {
@@ -41,6 +44,11 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		}
 	}
 
+	function withdraw() public onlyOwner {
+    		address payable owner = payable(address(owner()));
+    		owner.transfer(address(this).balance);
+  	}
+
 	function claim(uint256 tokenId) public {
 		require (isApprovedOrOwner(msg.sender, tokenId), "Not approved to take this longhorn");
 		internalTransfer(msg.sender, tokenId);
@@ -55,6 +63,11 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		require(baseIndex < 999, "No more base lucid longhorns for sale.");
 		mint(msg.sender, baseIndex);
 		baseIndex++;
+		if (msg.value >= LibConstants.base()) {
+			uint256 returnAmount = msg.value.sub(LibConstants.base());
+			(bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
+        		require(success, 'ETH transfer failed');
+    		}
 	}
 
 	function buyBronze() public payable {
@@ -62,6 +75,11 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		require(bronzeIndex < 1499, "No more bronze lucid longhorns for sale");
 		mint(msg.sender, bronzeIndex);
 		bronzeIndex++;
+		if (msg.value >= LibConstants.bronze()) {
+                        uint256 returnAmount = msg.value.sub(LibConstants.bronze());
+                        (bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
+                        require(success, 'ETH transfer failed');
+                }
 	}
 
 	function buySilver() public payable {
@@ -69,6 +87,11 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		require(silverIndex < 1799, "No more silver lucid longhorns for sale");
 		mint(msg.sender, silverIndex);
 		silverIndex++;
+		if (msg.value >= LibConstants.silver()) {
+                        uint256 returnAmount = msg.value.sub(LibConstants.silver());
+                        (bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
+                        require(success, 'ETH transfer failed');
+                }
 	}
 
 	function buyGold() public payable {
@@ -76,5 +99,14 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		require(goldIndex < 1999, "No more gold lucid longhorns for sale");
 		mint(msg.sender, goldIndex);
 		goldIndex++;
+		if (msg.value >= LibConstants.gold()) {
+                        uint256 returnAmount = msg.value.sub(LibConstants.gold());
+                        (bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
+                        require(success, 'ETH transfer failed');
+                }
+	}
+
+	function contractBalance() external view onlyOwner returns (uint256) {
+		return address(this).balance;
 	}
 }

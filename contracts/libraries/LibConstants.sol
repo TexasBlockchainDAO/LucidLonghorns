@@ -14,19 +14,19 @@ library LibConstants {
 
 	uint64 private constant GOLD_VALUE = 1000000000000000000;
 
-	function base() internal pure returns (uint64) {
+	function base() external pure returns (uint64) {
 		return BASE_VALUE;
 	}
 
-	function bronze() internal pure returns (uint64) {
+	function bronze() external pure returns (uint64) {
 		return BRONZE_VALUE;
 	}
 
-	function silver() internal pure returns (uint64) {
+	function silver() external pure returns (uint64) {
 		return SILVER_VALUE;
 	}
 
-	function gold() internal pure returns (uint64) {
+	function gold() external pure returns (uint64) {
 		return GOLD_VALUE;
 	}
 }

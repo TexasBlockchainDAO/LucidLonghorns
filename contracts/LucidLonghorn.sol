@@ -109,4 +109,20 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 	function contractBalance() external view onlyOwner returns (uint256) {
 		return address(this).balance;
 	}
+
+	function remainingBase() public view returns (uint256) {
+		return uint256(999).sub(baseIndex);
+	}
+
+	function remainingBronze() public view returns (uint256) {
+                return uint256(1499).sub(bronzeIndex);
+        }
+
+	function remainingSilver() public view returns (uint256) {
+                return uint256(1799).sub(silverIndex);
+        }
+
+	function remainingGold() public view returns (uint256) {
+                return uint256(1999).sub(goldIndex);
+        }
 }

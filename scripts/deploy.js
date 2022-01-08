@@ -5,19 +5,21 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
+  const LibraryFactory = await ethers.getContractFactory("LibConstants");
+  const LibraryDeploy = await LibraryFactory.deploy();
+  await LibraryDeploy.deployed();
+  const LibraryAddress = LibraryDeploy.address;
+  console.log(LibraryAddress);
+
   const InitFactory = await ethers.getContractFactory("Init");
   const InitDeploy = await InitFactory.deploy();
   await InitDeploy.deployed();
-  const LonghornFactory = await ethers.getContractFactory("LucidLonghorn", {
-	  libraries: {
-		  LibConstants: "0x09F05275BF370a7C354C2c64DB3656d484433FFb",
-	  },
-  });
+  const LonghornFactory = await ethers.getContractFactory("LucidLonghorn")
   const LonghornDeploy = await LonghornFactory.deploy();
   await LonghornDeploy.deployed();
 
-  console.log("Init address:", InitDeploy.address);
-  console.log("Main Contract (Lucid Longhorn) address:", LonghornDeploy.address);
+  console.log("Init address: ", InitDeploy.address);
+  console.log("Main Contract (Lucid Longhorn) address: ", LonghornDeploy.address);
 }
 
 main()

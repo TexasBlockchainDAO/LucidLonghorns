@@ -12,25 +12,16 @@ openzeppelin's required contracts with
 
 From here, feel free to tweak the code to perform whatever task you want.
 
-# Running on a testnet
+# Interacting with the contract
 
-Once the source code is downloaded, to interact with the front end, you will need to
-host a website from your computer. First, in a new terminal, go to the `website` directory
-and run
-
+You can interact with the contract right after downloading by running the terminal command 
 `sudo python3 -m http.server 80` for linux or 
-`python3 -m http.server 80` for any other OS.
+`python3 -m http.server 80` for any other OS while in the `website` directory of this project 
 *Note that administrator privileges are required to start a service, like a http webserver.
 
-Now that the website is up and running, going to your internet browser and typing `localhost`, `127.0.0.1` or your internal ip will bring you to
-the basic Lucid Longhorn minting page. Before we can do anything, though, we need to deploy the contract. In this example, we will be deploying to Ropsten.
+From here, just play around with the existing functions, add buttons, etc. 
 
-In order to deploy the contract, run 
+In case you want to connect from a self-made front end, the contract address is 
 
-`npx hardhat run scripts/deploy.js --network ropsten`
-
-on an open terminal while in the `LucidLonghorns` directory.
-
-Feel free to visit a faucet, like this one: https://faucet.ropsten.be/ to get some testnet ETH.
-
-Congrats! Now you can mint any Lucid Longhorn you want, test the source code, and write new functions. Welcome to UT Blockchain!
+| Lucid Longhorns (Ropsten) | [0xEd64dA23f6E1BF5Db7bD509D550756c9cbE98b56] (https://ropsten.etherscan.io/address/0xEd64dA23f6E1BF5Db7bD509D550756c9cbE98b56) |
+| Lucid Longhorns (Mainnet) | 

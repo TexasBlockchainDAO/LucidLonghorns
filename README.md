@@ -23,5 +23,6 @@ From here, just play around with the existing functions, add buttons, etc.
 
 In case you want to connect from a self-made front end, the contract address is 
 
+| Contract                  | Address                                                                                                                    
+|:-------------------------|:--------------------------------------------|
 | Lucid Longhorns (Ropsten) |[0xEd64dA23f6E1BF5Db7bD509D550756c9cbE98b56](https://ropsten.etherscan.io/address/0xEd64dA23f6E1BF5Db7bD509D550756c9cbE98b56)|
-| Lucid Longhorns (Mainnet) | 

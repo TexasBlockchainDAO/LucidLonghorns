@@ -3,7 +3,7 @@ NFT smart contract for Texas Blockchain @UT
 
 To test this code for yourself, first clone the repo with
 
-`git clone --recursive https://github.com/Beasley9/LucidLonghorns`
+`git clone --recursive https://github.com/TexasBlockchainDAO/LucidLonghorns`
 
 Once finished, unless already downloaded globally, you will need to download
 openzeppelin's required contracts with

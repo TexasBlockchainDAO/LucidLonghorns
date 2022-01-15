@@ -17,11 +17,21 @@
   text-align: center;
 }
 .bottom {
-  text-indent: 275px;
+  text-align: center;
 }
 .buttons {
-  text-indent: 225px;
+  text-align: center;
+}
+.payable {
+  text-align: center;
+}
+.first_batch {
+  text-align: center;
+}
+.first_buttons {
+  text-align: center;
 }
 h1 {
   text-align: center;
+  color: #fff;
 }

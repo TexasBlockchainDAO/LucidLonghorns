@@ -11,7 +11,7 @@ body {
   font-size: 1.5em;
   line-height: 1.58;
   font-family: 'VT323', Helvetica, sans-serif;
-  background-color: #000;
+  background-color: #19243c;
   color: #fff;
   margin: 0;
   padding: 0;
@@ -26,39 +26,47 @@ body {
       <h1>Mint a Lucid Longhorn</h1>
       <p>
       <div><a id="other"><ins>Students</ins></a></div> Get whitelisted through club participation
-      <div><a id="base"><ins>Base</ins></a></div> 0.05 Ether
+      <div><a id="base"><ins>Alumni</ins></a></div> 0.05 Ether
+    </div>
+    <div class="first_batch">
+	    <h2> <a id="other"><ins>Student</ins>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
+	         <a id="base"><ins>Alumni</ins></a>
+	    </h2>
+    </div>
+    <div class="first_buttons"> 
+  	<button onclick="contractBalance()">
+          <img src="assets/Student.png" width="200" height="200"/>
+        </button>
+	    <a>&emsp;&emsp;&emsp;&emsp;</a>
+	<button onclick="buyBase()">
+          <img src="assets/Base.png" width="200" height="200"/>
+        </button>
+    </div>
+    <div class="payable">
       <div> <a id="bronze"><ins>Bronze</ins></a></div> 0.1 Ether
       <div> <a id="silver"><ins>Silver</ins></a></div> 0.5 Ether
       <div> <a id="gold"><ins>Gold</ins></a></div> 1.0 Ether</p>
     </div>
   </div>
   <div class="bottom"> 
-	  <h2> <a id="other"><ins>Student</ins>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
+	  <h2> 
 	       <a id="silver"><ins>Silver</ins>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
 	       <a id="gold"><ins>Gold</ins>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
-	       <a id="bronze"><ins>Bronze</ins>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
-	       <a id="base"><ins>Base</ins></a>
-	  </h2>
+	       <a id="bronze"><ins>Bronze</ins></a>
+	       </h2>  
   </div>
   <div class="buttons">
-  <button onclick="contractBalance()"> 
-	  <img src="assets/Student.png" width="200" height="200"/>
-  </button>
-  <a>&emsp;&emsp;&emsp;&emsp;</a>
+	  <a> &nbsp; </a>
   <button onclick="buySilver()">
           <img src="assets/Silver.png" width="200" height="200"/>
   </button>
-  <a>&emsp;&emsp;&emsp;&nbsp;</a>
+  <a>&emsp;&emsp;&emsp;</a>
   <button onclick="buyGold()">
           <img src="assets/Gold.png" width="200" height="200"/>
   </button>
   <a>&emsp;&emsp;&emsp;</a>
   <button onclick="buyBronze()">
           <img src="assets/Bronze.png" width="200" height="200"/>
-  </button>
-  <a>&emsp;&emsp;&emsp;</a>
-  <button onclick="buyBase()">
-          <img src="assets/Base.png" width="200" height="200"/>
   </button>
   </div>
   <script>

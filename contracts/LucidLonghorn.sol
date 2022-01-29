@@ -58,21 +58,9 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 		return _isApprovedOrOwner(account, tokenId);
 	}
 
-	function buyBase() public payable {
-		require(msg.value >= LibConstants.base(), "Not enough ETH");
-		require(baseIndex < 999, "No more base lucid longhorns for sale.");
-		mint(msg.sender, baseIndex);
-		baseIndex++;
-		if (msg.value >= LibConstants.base()) {
-			uint256 returnAmount = msg.value.sub(LibConstants.base());
-			(bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
-        		require(success, 'ETH transfer failed');
-    		}
-	}
-
 	function buyBronze() public payable {
 		require(msg.value >= LibConstants.bronze(), "Not enough ETH");
-		require(bronzeIndex < 1499, "No more bronze lucid longhorns for sale");
+		require(bronzeIndex < 200, "No more bronze lucid longhorns for sale");
 		mint(msg.sender, bronzeIndex);
 		bronzeIndex++;
 		if (msg.value >= LibConstants.bronze()) {
@@ -84,7 +72,7 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 
 	function buySilver() public payable {
 		require(msg.value >= LibConstants.silver(), "Not enough ETH");
-		require(silverIndex < 1799, "No more silver lucid longhorns for sale");
+		require(silverIndex < 250, "No more silver lucid longhorns for sale");
 		mint(msg.sender, silverIndex);
 		silverIndex++;
 		if (msg.value >= LibConstants.silver()) {
@@ -96,7 +84,7 @@ contract LucidLonghorn is ERC721, Ownable, Init {
 
 	function buyGold() public payable {
 		require(msg.value >= LibConstants.gold(), "Not enough ETH");
-		require(goldIndex < 1999, "No more gold lucid longhorns for sale");
+		require(goldIndex < 270, "No more gold lucid longhorns for sale");
 		mint(msg.sender, goldIndex);
 		goldIndex++;
 		if (msg.value >= LibConstants.gold()) {
@@ -106,23 +94,35 @@ contract LucidLonghorn is ERC721, Ownable, Init {
                 }
 	}
 
+	function buyLegendary() public payable {
+		require(msg.value >= LibConstants.legendary(), "Not enough ETH");
+		require(legendaryIndex < 275, "No more legendary lucid longhorns for sale");
+		mint(msg.sender, legendaryIndex);
+		legendaryIndex++;
+		if (msg.value >= LibConstants.maxLegendary()) {
+                        uint256 returnAmount = msg.value.sub(LibConstants.maxLegendary());
+                        (bool success, ) = msg.sender.call{value: returnAmount}(new bytes(0));
+                        require(success, 'ETH transfer failed');
+                }
+	}
+
 	function contractBalance() external view onlyOwner returns (uint256) {
 		return address(this).balance;
 	}
 
-	function remainingBase() public view returns (uint256) {
-		return uint256(999).sub(baseIndex);
-	}
-
 	function remainingBronze() public view returns (uint256) {
-                return uint256(1499).sub(bronzeIndex);
+                return uint256(200).sub(bronzeIndex);
         }
 
 	function remainingSilver() public view returns (uint256) {
-                return uint256(1799).sub(silverIndex);
+                return uint256(250).sub(silverIndex);
         }
 
 	function remainingGold() public view returns (uint256) {
-                return uint256(1999).sub(goldIndex);
+                return uint256(270).sub(goldIndex);
         }
+
+	function remainingLegendary() public view returns (uint256) {
+		return uint256(275).sub(legendaryIndex);
+	}
 }

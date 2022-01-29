@@ -58,33 +58,48 @@ describe("Transfer", function () {
   });
 });
 describe("Buy", function () {
-  it("gives a base longhorn for .05 ETH", async function () {
-    await this.lucid.connect(user).buyBase({value: ethers.utils.parseEther("0.05")});
-    await this.lucid.connect(user2).buyBase({value: ethers.utils.parseEther("0.05")});
-    expect(await this.lucid.ownerOf('0')).to.eq(userAddress);
-    expect(await this.lucid.ownerOf('1')).to.eq(user2Address);
-    await expect(this.lucid.connect(user).buyBase({value: ethers.utils.parseEther("0.049")})).to.be.revertedWith("Not enough ETH");
-  });
   it("gives a bronze longhorn for .1 ETH", async function () {
     await this.lucid.connect(user).buyBronze({value: ethers.utils.parseEther("0.1")});
     await this.lucid.connect(user2).buyBronze({value: ethers.utils.parseEther("0.1")});
-    expect(await this.lucid.ownerOf('1000')).to.eq(userAddress);
-    expect(await this.lucid.ownerOf('1001')).to.eq(user2Address);
+    expect(await this.lucid.ownerOf('0')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('1')).to.eq(user2Address);
     await expect(this.lucid.connect(user).buyBronze({value: ethers.utils.parseEther("0.099")})).to.be.revertedWith("Not enough ETH");
   });
   it("gives a silver longhorn for .5 ETH", async function () {
-    await this.lucid.connect(user).buySilver({value: ethers.utils.parseEther("0.5")});
-    await this.lucid.connect(user2).buySilver({value: ethers.utils.parseEther("0.5")});
-    expect(await this.lucid.ownerOf('1500')).to.eq(userAddress);
-    expect(await this.lucid.ownerOf('1501')).to.eq(user2Address);
-    await expect(this.lucid.connect(user).buySilver({value: ethers.utils.parseEther("0.49")})).to.be.revertedWith("Not enough ETH");
+    await this.lucid.connect(user).buySilver({value: ethers.utils.parseEther("0.25")});
+    await this.lucid.connect(user2).buySilver({value: ethers.utils.parseEther("0.25")});
+    expect(await this.lucid.ownerOf('200')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('201')).to.eq(user2Address);
+    await expect(this.lucid.connect(user).buySilver({value: ethers.utils.parseEther("0.24")})).to.be.revertedWith("Not enough ETH");
   });
   it("gives a gold longhorn for 1 ETH", async function () {
     await this.lucid.connect(user).buyGold({value: ethers.utils.parseEther("1.0")});
     await this.lucid.connect(user2).buyGold({value: ethers.utils.parseEther("1.0")});
-    expect(await this.lucid.ownerOf('1800')).to.eq(userAddress);
-    expect(await this.lucid.ownerOf('1801')).to.eq(user2Address);
+    expect(await this.lucid.ownerOf('250')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('251')).to.eq(user2Address);
     await expect(this.lucid.connect(user).buyGold({value: ethers.utils.parseEther(".99")})).to.be.revertedWith("Not enough ETH");
+  });
+  it("gives a legendary longhorn for 3 ETH", async function () {
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("3.0")});
+    await this.lucid.connect(user2).buyLegendary({value: ethers.utils.parseEther("3.0")});
+    expect(await this.lucid.ownerOf('270')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('271')).to.eq(user2Address);
+    await expect(this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("2.99")})).to.be.revertedWith("Not enough ETH");
+  });
+  it("does not overflow", async function () {
+    await this.lucid.connect(owner).withdraw();
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("21.0")});
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("20.0")});
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("30.0")});
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("40.0")});
+    await this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("24.0")});
+    expect(await this.lucid.ownerOf('270')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('271')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('272')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('273')).to.eq(userAddress);
+    expect(await this.lucid.ownerOf('274')).to.eq(userAddress);
+    expect(await this.lucid.contractBalance()).to.eq('100000000000000000000');
+    await expect(this.lucid.connect(user).buyLegendary({value: ethers.utils.parseEther("24.0")})).to.be.revertedWith("No more legendary lucid longhorns for sale");
   });
 });
 describe("Miscellaneous", function () {

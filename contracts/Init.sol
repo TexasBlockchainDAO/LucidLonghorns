@@ -9,24 +9,24 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Init {
 
-	uint256 internal baseIndex;
-
 	uint256 internal bronzeIndex;
 
 	uint256 internal silverIndex;
 
 	uint256 internal goldIndex;
 
+	uint256 internal legendaryIndex;
+
 	/**
-	* Base is the cheapest, and the most common purchasable NFT -- 1000 total
-	* Bronze is more expensive and more rare -- 500 total
-	* Silver is reserved for big donators -- 300 total
-	* Gold is the highest and rarest tier -- 200 total
+	* Bronze is more expensive and more rare -- 200 total
+	* Silver is reserved for big donators -- 50 total
+	* Gold is the highest and rarest tier -- 20 total
+        * Legendary is reserved for only the biggest sponsors -- 5 total
 	**/
 	constructor() {
-		baseIndex = 0;
-		bronzeIndex = 1000;
-		silverIndex = 1500;
-		goldIndex = 1800;
+		bronzeIndex = 0;
+		silverIndex = 200;
+		goldIndex = 250;
+		legendaryIndex = 270;
 	}
 }
